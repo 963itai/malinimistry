@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><style id="qw-theme">:root {
+  --color-bg: #faf9fc !important;
+  --color-text: #131920 !important;
+  --chat-column-max: 720px !important;
+  --flow-size-overview-canvas-min-height: 480px !important;
+  --color-navbar-bg: #f9f9fb !important;
+  --color-navbar-fg: #131920 !important;
+  --color-navbar-fg-muted: color-mix(in srgb, #131920 65%, #f9f9fb) !important;
+  --color-navbar-divider: #0000001f !important;
+  --color-leftnav-bg: #f9f9fb !important;
+  --color-bg-chat-view: #f9f9fb !important;
+  --color-bg-secondary: #fff !important;
+  --color-bg-tertiary: #f9fafb !important;
+  --color-bg-hover: #f3f4f6 !important;
+  --color-surface: #f9fafb !important;
+  --color-surface-hover: #f3f4f6 !important;
+  --color-surface-active: #e5e7eb !important;
+  --color-border: #0000001f !important;
+  --color-border-light: #0000000f !important;
+  --color-border-strong: #d1d5db !important;
+  --background-toggle-off-default: #fff0 !important;
+  --color-primary: #4200db !important;
+  --color-primary-dark: #35009e !important;
+  --color-primary-light: #8575ff !important;
+  --color-primary-bg: #e8e6ff !important;
+  --color-primary-hover-border: #35009e !important;
+  --color-nav-icon-active: #4200db !important;
+  --color-nav-hover-border: #4200db !important;
+  --color-primary-alpha-3: color-mix(in srgb, #4200db 3%, transparent) !important;
+  --color-primary-alpha-5: color-mix(in srgb, #4200db 5%, transparent) !important;
+  --color-primary-alpha-8: color-mix(in srgb, #4200db 8%, transparent) !important;
+  --color-primary-alpha-12: color-mix(in srgb, #4200db 12%, transparent) !important;
+  --color-primary-alpha-15: color-mix(in srgb, #4200db 15%, transparent) !important;
+  --color-primary-alpha-20: color-mix(in srgb, #4200db 20%, transparent) !important;
+  --color-primary-alpha-25: color-mix(in srgb, #4200db 25%, transparent) !important;
+  --color-primary-alpha-30: color-mix(in srgb, #4200db 30%, transparent) !important;
+  --color-primary-alpha-40: color-mix(in srgb, #4200db 40%, transparent) !important;
+  --color-primary-alpha-50: color-mix(in srgb, #4200db 50%, transparent) !important;
+  --color-primary-alpha-60: color-mix(in srgb, #4200db 60%, transparent) !important;
+  --color-primary-subtle: color-mix(in srgb, #4200db 12%, transparent) !important;
+  --color-primary-border: color-mix(in srgb, #4200db 30%, transparent) !important;
+  --color-focus-ring: #4200db !important;
+  --color-sidebar-hover: color-mix(in srgb, #4200db 12%, transparent) !important;
+  --color-sidebar-hover-solid: color-mix(in srgb, #4200db 12%, #faf9fc) !important;
+  --color-selection-copy: #3b82f64d !important;
+  --color-selection-capture: color-mix(in srgb, #4200db 25%, transparent) !important;
+  --block-hover-outline: 1px dashed color-mix(in srgb, #4200db 50%, transparent) !important;
+  --block-selected-outline: 1px solid #8575ff !important;
+  --block-selection-outline-offset: 2px !important;
+  --block-selected-halo: 0 0 8px color-mix(in srgb, #4200db 40%, transparent) !important;
+  --color-accent: #4200db !important;
+  --color-accent-foreground: #4200db !important;
+  --color-accent-dark: #35009e !important;
+  --color-accent-light: #e8e6ff !important;
+  --color-accent-inverse: #fff !important;
+  --color-link: #4200db !important;
+  --color-brand-ai-gradient-start: #6842ff !important;
+  --color-brand-ai-gradient-mid: #d600ba !important;
+  --color-brand-ai-gradient-end: #ff4b14 !important;
+  --color-primary-gradient-end: #e8e6ff !important;
+  --color-primary-bg-solid: #e8e6ff !important;
+  --color-user-bubble: #f3f3f7 !important;
+  --color-user-bubble-text: #131920 !important;
+  --color-text-secondary: #5e5e5e !important;
+  --color-text-tertiary: #656871 !important;
+  --color-text-muted: #9ca3af !important;
+  --color-text-on-primary: #fff !important;
+  --color-success: #00802f !important;
+  --color-success-dark: #00471e !important;
+  --color-success-light: #d9ffd6 !important;
+  --color-success-hover: #005c26 !important;
+  --color-success-bg: #e6f5eb !important;
+  --color-success-border: #b3d9bf !important;
+  --color-success-foreground: #00802f !important;
+  --color-success-dark-foreground: #00471e !important;
+  --color-success-text: #00471e !important;
+  --color-error: #db0000 !important;
+  --color-error-dark: #700000 !important;
+  --color-error-light: #ffe0e0 !important;
+  --color-error-hover: #ffe0e0 !important;
+  --color-error-bg: #fceaea !important;
+  --color-error-border: #f2cccc !important;
+  --color-error-active-border: #db0000 !important;
+  --color-error-foreground: #db0000 !important;
+  --color-error-dark-foreground: #700000 !important;
+  --color-error-inverse: #fff !important;
+  --color-error-text: #700000 !important;
+  --color-warning: #f2b100 !important;
+  --color-warning-dark: #573a00 !important;
+  --color-warning-light: #fffbbd !important;
+  --color-warning-hover: #db9200 !important;
+  --color-warning-bg: #fef7e6 !important;
+  --color-warning-border: #f9dfa3 !important;
+  --color-warning-foreground: #f2b100 !important;
+  --color-warning-dark-foreground: #573a00 !important;
+  --color-warning-inverse: #573a00 !important;
+  --color-surface-warning: #fffbbd !important;
+  --color-text-warning: #573a00 !important;
+  --color-info: #006ce0 !important;
+  --color-info-dark: #002a66 !important;
+  --color-info-light: #d1f1ff !important;
+  --color-info-hover: #003b8f !important;
+  --color-info-bg: #ebf3fc !important;
+  --color-info-border: #b3d1f0 !important;
+  --color-info-foreground: #006ce0 !important;
+  --color-info-dark-foreground: #002a66 !important;
+  --color-info-inverse: #fff !important;
+  --color-overlay: #00000080 !important;
+  --color-shadow: #00000014 !important;
+  --color-hover: #0000000d !important;
+  --color-tooltip-bg: #000000d9 !important;
+  --color-tooltip-text: #fff !important;
+  --color-voice-purple: #8575ff !important;
+  --color-voice-purple-dark: #4200db !important;
+  --color-voice-purple-light: #8575ff !important;
+  --color-voice-red: #db0000 !important;
+  --color-voice-red-dark: #700000 !important;
+  --color-voice-amber: #f2b100 !important;
+  --color-voice-purple-glow: #4200db66 !important;
+  --color-voice-red-glow: #db000066 !important;
+  --font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  --font-mono: "SF Mono", "Monaco", "Menlo", "Consolas", monospace !important;
+  --text-2xs: .5625rem !important;
+  --text-xs: .625rem !important;
+  --text-sm: .6875rem !important;
+  --text-base: .75rem !important;
+  --text-md: .8125rem !important;
+  --text-lg: .875rem !important;
+  --text-xl: 1rem !important;
+  --text-2xl: 1.125rem !important;
+  --text-3xl: 1.25rem !important;
+  --text-4xl: 1.5rem !important;
+  --text-5xl: 2rem !important;
+  --spacing-1: calc(.25rem * 1) !important;
+  --spacing-1-5: calc(.25rem * 1.5) !important;
+  --spacing-2: calc(.25rem * 2) !important;
+  --spacing-3: calc(.25rem * 3) !important;
+  --spacing-4: calc(.25rem * 4) !important;
+  --spacing-5: calc(.25rem * 5) !important;
+  --spacing-6: calc(.25rem * 6) !important;
+  --spacing-7: calc(.25rem * 7) !important;
+  --spacing-8: calc(.25rem * 8) !important;
+  --spacing-9: calc(.25rem * 9) !important;
+  --spacing-10: calc(.25rem * 10) !important;
+  --border-radius-rounded-lg: 8px !important;
+  --radius-sm: 6px !important;
+  --radius-md: 10px !important;
+  --radius-card: 12px !important;
+  --radius-lg: 16px !important;
+  --radius-pill: 8px !important;
+  --shadow-sm: 0 1px 2px #0000000d !important;
+  --shadow-md: 0 4px 12px #00000014 !important;
+  --shadow-lg: 0 4px 16px 4px #00000029, 0 2px 6px 1px #00000029 !important;
+  --color-success-bg-solid: #d9ffd6 !important;
+  --color-error-bg-solid: #ffe0e0 !important;
+  --color-error-border-solid: #ffe0e0 !important;
+  --color-warning-bg-solid: #fffbbd !important;
+  --color-warning-text: #573a00 !important;
+  --color-info-bg-solid: #d1f1ff !important;
+  --color-info-bg-solid-alt: #d1f1ff !important;
+  --color-info-text: #002a66 !important;
+  --color-info-text-alt: #002a66 !important;
+  --color-emerald: #10b981 !important;
+  --color-teal: #4ecdc4 !important;
+  --color-code-bg: #f3f3f7 !important;
+  --color-code-header-bg: #f1f3f5 !important;
+  --color-code-text: #24292e !important;
+  --color-code-border: #e1e4e8 !important;
+  --color-code-muted: #6a737d !important;
+  --color-inline-code-bg: #f3f3f7 !important;
+  --color-inline-code-text: #24292e !important;
+  --color-inline-code-border: #e1e4e8 !important;
+  --color-scrollbar-thumb: #d1d5db !important;
+  --color-scrollbar-track: transparent !important;
+  --color-graph-node-text: #333 !important;
+  --color-graph-node-text-dim: #7f8c8d !important;
+  --color-graph-edge-default: #95a5a6 !important;
+  --color-graph-edge-cross: #e67e22 !important;
+  --color-graph-edge-text: #666 !important;
+  --color-graph-edge-stroke: #fff !important;
+  --color-graph-highlight-bg: #ff6b6b !important;
+  --color-graph-highlight-border: #e74c3c !important;
+  --color-graph-search-bg: gold !important;
+  --color-graph-search-border: orange !important;
+  --color-graph-focus-border: #c0392b !important;
+  --color-graph-external-border: #95a5a6 !important;
+  --color-graph-selected-border: #4200db !important;
+  --qs-data-cat-01: #4338ca !important;
+  --qs-data-cat-02: #d97706 !important;
+  --qs-data-cat-03: #0891b2 !important;
+  --qs-data-cat-04: #8b5cf6 !important;
+  --qs-data-cat-05: #15803d !important;
+  --qs-data-cat-06: #0c4a6e !important;
+  --qs-data-cat-07: #d946ef !important;
+  --qs-data-cat-08: #65a30d !important;
+  --qs-data-cat-09: #1d4ed8 !important;
+  --qs-data-cat-10: #831843 !important;
+  --qs-data-cat-11: #c2410c !important;
+  --qs-data-cat-12: #115e59 !important;
+  --qs-data-cat-other: #737373 !important;
+  --color-graph-cat-person: #4338ca !important;
+  --color-graph-cat-module: #4338ca !important;
+  --color-graph-cat-organization: #d97706 !important;
+  --color-graph-cat-org: #d97706 !important;
+  --color-graph-cat-variable: #d97706 !important;
+  --color-graph-cat-column: #d97706 !important;
+  --color-graph-cat-project: #0891b2 !important;
+  --color-graph-cat-sheet: #0891b2 !important;
+  --color-graph-cat-url: #0891b2 !important;
+  --color-graph-cat-product: #8b5cf6 !important;
+  --color-graph-cat-class: #8b5cf6 !important;
+  --color-graph-cat-dashboard: #8b5cf6 !important;
+  --color-graph-cat-place: #15803d !important;
+  --color-graph-cat-location: #15803d !important;
+  --color-graph-cat-function: #15803d !important;
+  --color-graph-cat-event: #0c4a6e !important;
+  --color-graph-cat-date: #0c4a6e !important;
+  --color-graph-cat-service: #0c4a6e !important;
+  --color-graph-cat-creativework: #d946ef !important;
+  --color-graph-cat-doc: #d946ef !important;
+  --color-graph-cat-message: #65a30d !important;
+  --color-graph-cat-channel: #65a30d !important;
+  --color-graph-cat-email: #65a30d !important;
+  --color-graph-cat-visual: #65a30d !important;
+  --color-graph-cat-file: #1d4ed8 !important;
+  --color-graph-cat-file-aggregate: #1d4ed8 !important;
+  --color-graph-cat-code: #1d4ed8 !important;
+  --color-graph-cat-decision: #831843 !important;
+  --color-graph-cat-action: #831843 !important;
+  --color-graph-cat-observation: #831843 !important;
+  --color-graph-cat-metric: #831843 !important;
+  --color-graph-cat-topic: #c2410c !important;
+  --color-graph-cat-concept: #c2410c !important;
+  --color-graph-cat-definedterm: #c2410c !important;
+  --color-graph-cat-instruction: #c2410c !important;
+  --color-graph-cat-import: #c2410c !important;
+  --color-graph-cat-dataset: #115e59 !important;
+  --color-graph-cat-occupation: #115e59 !important;
+  --color-graph-cat-method: #115e59 !important;
+  --color-graph-cat-folder: #737373 !important;
+  --color-graph-cat-unknown: #737373 !important;
+  --color-graph-rel-contains: #bdc3c7 !important;
+  --color-graph-rel-extends: #9b59b6 !important;
+  --color-graph-rel-implements: #3498db !important;
+  --color-graph-rel-imports: #e67e22 !important;
+  --color-graph-rel-uses: #2ecc71 !important;
+  --color-graph-rel-calls: #27ae60 !important;
+  --color-graph-rel-references: #f39c12 !important;
+  --color-graph-rel-related-to: #95a5a6 !important;
+  --color-graph-rel-works-on: #e74c3c !important;
+  --color-graph-rel-owns: #1abc9c !important;
+  --color-graph-rel-depends-on: #e67e22 !important;
+  --color-graph-rel-parent-of: #bdc3c7 !important;
+  --qs-content: #fff !important;
+  --qs-main: #fff !important;
+  --qs-primary-foreground: #131920 !important;
+  --qs-secondary-foreground: #656871 !important;
+  --qs-tertiary-foreground: #9ca3af !important;
+  --qs-placeholder-foreground: #656871 !important;
+  --qs-divider: #dedee3 !important;
+  --qs-default-border: #8c8c94 !important;
+  --qs-neutral-soft: #b4b4bb !important;
+  --qs-neutral-gray-50: #f9fafb !important;
+  --qs-tertiary-background: #f9fafb !important;
+  --qs-action-hover: #f3f3f7 !important;
+  --qs-primary-default: #4200db !important;
+  --qs-primary-dark: #35009e !important;
+  --qs-primary-light: #e8e6ff !important;
+  --qs-success-default: #00802f !important;
+  --qs-error-default: #db0000 !important;
+  --qs-font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif !important;
+  --mc-status-needs-input-bg: #fffbbd !important;
+  --mc-status-needs-input-fg: #573a00 !important;
+  --mc-status-error-bg: #ffe0e0 !important;
+  --mc-status-error-fg: #700000 !important;
+  --mc-status-running-bg: #d1f1ff !important;
+  --mc-status-running-fg: #002a66 !important;
+  --mc-badge-success-bg: #aeffa8 !important;
+  --mc-badge-success-fg: #00471e !important;
+  --mc-badge-warning-bg: #ffed4d !important;
+  --mc-badge-warning-fg: #573a00 !important;
+  --mc-schedule-tile-border: #ffe0fb !important;
+  --mc-schedule-tile-bg: color-mix(in srgb, #ffe0fb 28%, #fff) !important;
+  --safe-top: 0px !important;
+  --safe-bottom: 0px !important;
+  --safe-left: 0px !important;
+  --safe-right: 0px !important;
+  --qs-action-active: #e8e6ff !important;
+  --qs-action-disabled: #f3f3f7 !important;
+  --qs-active-border: #4200db !important;
+  --qs-application-navbar: #4200db !important;
+  --qs-application-navbar-dark: #35009e !important;
+  --qs-application-navbar-foreground: #fff !important;
+  --qs-application-navbar-light: #e8e6ff !important;
+  --qs-automation-dark: #660052 !important;
+  --qs-automation-default: #d600ba !important;
+  --qs-automation-light: #ffe0fb !important;
+  --qs-automation-medium: #b3008f !important;
+  --qs-automation-soft: #ff94f1 !important;
+  --qs-avatar-blue-bg: #d1f1ff !important;
+  --qs-avatar-blue-fg: #002a66 !important;
+  --qs-avatar-fuchsia-bg: #fce6ff !important;
+  --qs-avatar-fuchsia-fg: #590066 !important;
+  --qs-avatar-green-bg: #d9ffd6 !important;
+  --qs-avatar-green-fg: #00471e !important;
+  --qs-avatar-neutral-bg: #dedee3 !important;
+  --qs-avatar-neutral-fg: #131920 !important;
+  --qs-avatar-orange-bg: #ffe0d6 !important;
+  --qs-avatar-orange-fg: #661800 !important;
+  --qs-avatar-pink-bg: #ffe0fb !important;
+  --qs-avatar-pink-fg: #660052 !important;
+  --qs-avatar-primary-bg: #e8e6ff !important;
+  --qs-avatar-primary-fg: #35009e !important;
+  --qs-avatar-red-bg: #ffe0e0 !important;
+  --qs-avatar-red-fg: #700000 !important;
+  --qs-avatar-violet-bg: #f2e5ff !important;
+  --qs-avatar-violet-fg: #45008a !important;
+  --qs-avatar-yellow-bg: #fffbbd !important;
+  --qs-avatar-yellow-fg: #573a00 !important;
+  --qs-brand: #fff !important;
+  --qs-brand-foreground: #131920 !important;
+  --qs-brand-navbar: #131920 !important;
+  --qs-brand-navbar-dark: #000 !important;
+  --qs-brand-navbar-foreground: #fff !important;
+  --qs-brand-navbar-light: #dedee3 !important;
+  --qs-coachmark: #006ce0 !important;
+  --qs-connection-dark: #661800 !important;
+  --qs-connection-default: #db3300 !important;
+  --qs-connection-light: #ffe0d6 !important;
+  --qs-connection-soft: #ff997a !important;
+  --qs-content-inverse: #333843 !important;
+  --qs-content-inverse-active: #131920 !important;
+  --qs-contrast-foreground: #131920 !important;
+  --qs-data-categorical-01: #4338ca !important;
+  --qs-data-categorical-02: #d97706 !important;
+  --qs-data-categorical-03: #0891b2 !important;
+  --qs-data-categorical-04: #8b5cf6 !important;
+  --qs-data-categorical-05: #15803d !important;
+  --qs-data-categorical-06: #0c4a6e !important;
+  --qs-data-categorical-07: #d946ef !important;
+  --qs-data-categorical-08: #65a30d !important;
+  --qs-data-categorical-09: #1d4ed8 !important;
+  --qs-data-categorical-10: #831843 !important;
+  --qs-data-categorical-11: #c2410c !important;
+  --qs-data-categorical-12: #115e59 !important;
+  --qs-data-categorical-other: #737373 !important;
+  --qs-data-divergent-negative: #ea580c !important;
+  --qs-data-divergent-positive: #4f46e5 !important;
+  --qs-data-divergent-red-green-negative: #dc2626 !important;
+  --qs-data-divergent-red-green-positive: #16a34a !important;
+  --qs-data-missing: #d4d4d4 !important;
+  --qs-data-sentiment-neutral: #737373 !important;
+  --qs-data-sentiment-warning: #9e6900 !important;
+  --qs-data-sequential-duochromatic-high: #1e1b4b !important;
+  --qs-data-sequential-duochromatic-low: #8b5cf6 !important;
+  --qs-data-sequential-monochromatic-high: #4f46e5 !important;
+  --qs-default-badge: #b4b4bb !important;
+  --qs-default-badge-dot: #656871 !important;
+  --qs-dimension: #4200db !important;
+  --qs-dimension-experimental: #4200db !important;
+  --qs-dimension-experimental-foreground: #4200db !important;
+  --qs-dimension-foreground: #fff !important;
+  --qs-disabled: #8c8c94 !important;
+  --qs-disabled-border: #dedee3 !important;
+  --qs-disabled-foreground: #b4b4bb !important;
+  --qs-divider-light: #f3f3f7 !important;
+  --qs-error-active-border: #db0000 !important;
+  --qs-error-border: #ffe0e0 !important;
+  --qs-error-dark: #700000 !important;
+  --qs-error-foreground: #db0000 !important;
+  --qs-error-inverse: #fff !important;
+  --qs-error-light: #ffe0e0 !important;
+  --qs-error-medium: #900 !important;
+  --qs-error-soft: #ff9e9e !important;
+  --qs-focus-offset: 1px !important;
+  --qs-font-base-letter-spacing: .15px !important;
+  --qs-font-family: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif !important;
+  --qs-grid-gap: 16px !important;
+  --qs-grid-gap-xl: 24px !important;
+  --qs-hero-banner-button-hover: color-mix(in srgb, #fff, transparent 60%) !important;
+  --qs-hover-border: #333843 !important;
+  --qs-info-dark: #002a66 !important;
+  --qs-info-default: #006ce0 !important;
+  --qs-info-inverse: #fff !important;
+  --qs-info-light: #d1f1ff !important;
+  --qs-info-medium: #003b8f !important;
+  --qs-info-soft: #75cfff !important;
+  --qs-insight-dark: #590066 !important;
+  --qs-insight-default: #a000b8 !important;
+  --qs-insight-light: #fce6ff !important;
+  --qs-insight-soft: #f299ff !important;
+  --qs-main-foreground: #131920 !important;
+  --qs-main-secondary-foreground: #656871 !important;
+  --qs-measure: #00802f !important;
+  --qs-measure-experimental: #f2b100 !important;
+  --qs-measure-experimental-foreground: #f2b100 !important;
+  --qs-measure-foreground: #fff !important;
+  --qs-neutral-black: #000 !important;
+  --qs-neutral-dark: #333843 !important;
+  --qs-neutral-deep: #656871 !important;
+  --qs-neutral-default: #dedee3 !important;
+  --qs-neutral-light: #f3f3f7 !important;
+  --qs-neutral-lightest: #f9f9fb !important;
+  --qs-neutral-medium: #8c8c94 !important;
+  --qs-neutral-strong: #131920 !important;
+  --qs-neutral-white: #fff !important;
+  --qs-overlay: color-mix(in srgb, #131920, transparent 50%) !important;
+  --qs-primary-inverse: #fff !important;
+  --qs-primary-inverse-foreground: #fff !important;
+  --qs-primary-medium: #8575ff !important;
+  --qs-primary-soft: #b2a8ff !important;
+  --qs-secondary: #dedee3 !important;
+  --qs-secondary-dark: #b4b4bb !important;
+  --qs-secondary-light: #f3f3f7 !important;
+  --qs-spice: #ff9800 !important;
+  --qs-success-dark: #00471e !important;
+  --qs-success-inverse: #fff !important;
+  --qs-success-light: #d9ffd6 !important;
+  --qs-success-medium: #005c26 !important;
+  --qs-success-soft: #aeffa8 !important;
+  --qs-tag-default: #dedee3 !important;
+  --qs-tag-soft-border: #b4b4bb !important;
+  --qs-toggle-tile-lg: calc(.25rem * 15) !important;
+  --qs-toggle-tile-md: calc(.25rem * 12) !important;
+  --qs-toggle-tile-sm: calc(.25rem * 8) !important;
+  --qs-transparent: transparent !important;
+  --qs-visualization-dark: #45008a !important;
+  --qs-visualization-default: #7300e5 !important;
+  --qs-visualization-light: #f2e5ff !important;
+  --qs-visualization-soft: #d4a8ff !important;
+  --qs-warning-dark: #573a00 !important;
+  --qs-warning-default: #f2b100 !important;
+  --qs-warning-experimental: #f2b100 !important;
+  --qs-warning-experimental-light: #fffbbd !important;
+  --qs-warning-experimental-light-foreground: #fffbbd !important;
+  --qs-warning-inverse: #573a00 !important;
+  --qs-warning-light: #fffbbd !important;
+  --qs-warning-medium: #db9200 !important;
+  --qs-warning-soft: #ffed4d !important;
+  --qs-width-modal-lg: 1136px !important;
+  --qs-width-modal-md: 600px !important;
+  --qs-width-modal-sm: 384px !important;
+  --qs-duration-reorder: .125s !important;
+  --qs-ease-reorder: ease-in-out !important;
+  --z-subtask-modal: 10000 !important;
+  --z-above-subtask-modal: 10001 !important;
+  --react-pdf-text-layer: 1 !important;
+  --highlight-bg-color: #b400aa !important;
+  --highlight-selected-bg-color: #006400 !important;
+  --react-pdf-annotation-layer: 1 !important;
+  --annotation-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>") !important;
+  --input-focus-border-color: Highlight !important;
+  --input-focus-outline: 1px solid Canvas !important;
+  --input-unfocused-border-color: transparent !important;
+  --input-disabled-border-color: transparent !important;
+  --input-hover-border-color: black !important;
+  --link-outline: none !important;
+}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malini Mistry — Enterprise AI Governance</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root{
+    --navy:#1A1A2E; --navy-2:#232346; --accent:#E4602E; --accent-2:#f08a5d;
+    --bg:#f6f7fb; --surface:#ffffff; --text:#1f2333; --muted:#5c6276;
+    --border:#e6e8f0; --chip:#eef0f7; --radius:14px;
+    --shadow:0 6px 24px rgba(26,26,46,.08); --shadow-sm:0 2px 8px rgba(26,26,46,.06);
+    --font: 'Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+  header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:48px 0 120px}
+  .hname{font-size:40px;font-weight:800;letter-spacing:.5px}
+  .htag{color:var(--accent-2);font-weight:600;margin-top:8px;font-size:17px}
+  .hcontact{margin-top:18px;display:flex;flex-wrap:wrap;gap:16px;font-size:14.5px;color:#c9ccda}
+  .hcontact a,.hcontact span{display:flex;align-items:center;gap:7px}
+  .hcontact a:hover{color:#fff}
+  .hcontact i{color:var(--accent-2)}
+
+  .tabs{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+        border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm)}
+  .tabs-inner{max-width:1040px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 12px}
+  .tab{flex:0 0 auto;padding:16px 18px;font-size:14px;font-weight:600;color:var(--muted);
+       background:none;border:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .18s;white-space:nowrap;font-family:var(--font)}
+  .tab:hover{color:var(--text)}
+  .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tab i{margin-right:7px}
+
+  .main{margin-top:-80px;padding-bottom:60px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+        box-shadow:var(--shadow);padding:30px;margin-bottom:22px}
+  .panel{display:none;animation:fade .4s ease both}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  h2.sec{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:4px}
+  .sec-line{width:46px;height:3px;background:var(--accent);border-radius:3px;margin-bottom:20px}
+  h3{font-size:20px;color:var(--navy);margin-bottom:12px}
+
+  p.lead{font-size:15.5px;color:var(--text);margin-bottom:14px}
+  .muted{color:var(--muted)}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:4px 0 6px}
+  .stat{background:linear-gradient(135deg,#fbfbfd,#f3f4fa);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center}
+  .stat .num{font-size:30px;font-weight:800;color:var(--accent)}
+  .stat .lbl{font-size:12.5px;color:var(--muted);margin-top:4px;font-weight:500}
+
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .exp-card{border:1px solid var(--border);border-radius:12px;padding:20px;background:#fcfcfe}
+  .exp-card h4{color:var(--navy);font-size:15.5px;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+  .exp-card h4 i{color:var(--accent);font-size:16px}
+  .exp-card p{font-size:13.8px;color:var(--muted);line-height:1.6}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{background:var(--chip);color:var(--navy);font-size:12.8px;font-weight:600;padding:7px 13px;border-radius:100px;border:1px solid var(--border)}
+
+  .job{position:relative;padding-left:26px;padding-bottom:26px;border-left:2px solid var(--border)}
+  .job:last-child{border-left:2px solid transparent;padding-bottom:0}
+  .job::before{content:'';position:absolute;left:-7px;top:3px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px #fde6dc}
+  .job-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;align-items:baseline}
+  .job-title{font-size:16.5px;font-weight:700;color:var(--navy)}
+  .job-co{font-size:14px;color:var(--accent);font-weight:600;margin-top:2px}
+  .job-date{font-size:12.8px;color:var(--muted);font-weight:600;background:var(--chip);padding:4px 11px;border-radius:100px}
+  .job-desc{font-size:14px;color:var(--muted);margin:8px 0 8px}
+  .job ul{list-style:none;margin-top:8px}
+  .job ul li{font-size:13.8px;color:var(--text);padding-left:20px;position:relative;margin-bottom:7px;line-height:1.55}
+  .job ul li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
+  .job ul li b{color:var(--navy)}
+
+  .cert-group{margin-bottom:20px}
+  .cert-group h4{color:var(--navy);font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .cert-group h4 i{color:var(--accent)}
+  .cert-list{display:flex;flex-wrap:wrap;gap:8px}
+
+  footer{text-align:center;padding:30px 20px;color:var(--muted);font-size:13px}
+  .inprog{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:#fde6dc;padding:2px 8px;border-radius:100px;margin-left:6px;vertical-align:middle}
+
+  @media(max-width:720px){
+    .hname{font-size:30px}.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}
+    .main{margin-top:-70px}.card{padding:22px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="hname">Malini Mistry</div>
+    <div class="htag">Enterprise AI Governance &nbsp;·&nbsp; Responsible AI &nbsp;·&nbsp; AI Risk &amp; Investment Governance</div>
+    <div class="hcontact">
+      <span><i class="fa-solid fa-location-dot"></i> Austin, TX</span>
+      <a href="tel:5127483570"><i class="fa-solid fa-phone"></i> 512-748-3570</a>
+      <a href="mailto:m.mistry@963it.ai"><i class="fa-solid fa-envelope"></i> m.mistry@963it.ai</a>
+      <a href="https://www.linkedin.com/in/malini-mistry" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/malini-mistry</a>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner" id="tabbar">
+    <button class="tab active" data-t="summary"><i class="fa-solid fa-user-tie"></i>Summary</button>
+    <button class="tab" data-t="expertise"><i class="fa-solid fa-sitemap"></i>Expertise</button>
+    <button class="tab" data-t="tools"><i class="fa-solid fa-robot"></i>AI Tools</button>
+    <button class="tab" data-t="experience"><i class="fa-solid fa-briefcase"></i>Experience</button>
+    <button class="tab" data-t="certs"><i class="fa-solid fa-certificate"></i>Certifications</button>
+    <button class="tab" data-t="education"><i class="fa-solid fa-graduation-cap"></i>Education</button>
+  </div>
+</nav>
+
+<div class="main">
+<div class="wrap">
+
+  <section class="panel active" id="summary">
+    <div class="card">
+      <h2 class="sec">Executive Summary</h2><div class="sec-line"></div>
+      <div class="stats">
+        <div class="stat"><div class="num">20+</div><div class="lbl">Years in Tech Governance &amp; Risk</div></div>
+        <div class="stat"><div class="num">4+</div><div class="lbl">Years Responsible AI Programs</div></div>
+        <div class="stat"><div class="num">180+</div><div class="lbl">Countries (F500 Operations)</div></div>
+        <div class="stat"><div class="num">$2M+</div><div class="lbl">Annual Program Spend Led</div></div>
+      </div>
+      <p class="lead" style="margin-top:18px">AI governance leader with 20+ years in technology governance, enterprise risk, cybersecurity, and data governance — including four years building and running Responsible AI programs for Fortune 500 companies operating in 180+ countries.</p>
+      <p class="lead muted">Designs the full governance stack for enterprise AI: principles and policy, risk-tiered classification, decision rights and approval thresholds, use-case intake, the enterprise AI inventory, third-party AI due diligence, and the forums and metrics that show leadership where AI is adopted, what risk it carries, and what value it returns.</p>
+      <p class="lead muted">ISO/IEC 42001 Lead Auditor with AIGP certification in progress (expected January 2027). Strong working knowledge of the EU AI Act, NIST AI RMF, and emerging global AI regulation — governing generative AI, machine learning, autonomous agents, and AI embedded in third-party products with governance teams find practical.</p>
+      <p class="lead muted">Works across Technology, Security, Architecture, Privacy, Legal, Risk, Finance, Procurement, and HR. A finance and audit background keeps AI investment decisions tied to business cases, total cost of ownership, and named benefit owners.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="expertise">
+    <div class="card">
+      <h2 class="sec">Areas of Expertise</h2><div class="sec-line"></div>
+      <div class="grid2">
+        <div class="exp-card"><h4><i class="fa-solid fa-landmark"></i>Enterprise AI Governance</h4><p>Framework and operating-model design; policies, standards, and decision rights; risk-tiered approval thresholds; AI use-case, model, and vendor inventory; shadow-AI identification; governance forums and escalation paths.</p></div>
+        <div class="exp-card"><h4><i class="fa-solid fa-chart-line"></i>AI Investment &amp; Portfolio Governance</h4><p>Business cases and benefit realization; total cost of ownership; stage-gate criteria to scale, pause, or stop; tooling rationalization and reuse; build-versus-buy advice; adoption and value metrics.</p></div>
+        <div class="exp-card"><h4><i class="fa-solid fa-scale-balanced"></i>Responsible AI &amp; Risk Management</h4><p>Principles and control frameworks; bias, fairness, and explainability; human-oversight requirements; model testing, validation, and monitoring; AI incident response; auditability and records retention.</p></div>
+        <div class="exp-card"><h4><i class="fa-solid fa-diagram-project"></i>Technology &amp; Architecture Governance</h4><p>Approved AI patterns, platforms, and guardrails; public, private, proprietary, and open-source model standards; agent, API, identity, and permissions governance; data/model access controls; production-readiness gates.</p></div>
+        <div class="exp-card"><h4><i class="fa-solid fa-handshake"></i>Third-Party AI Governance</h4><p>AI vendor due diligence; vendor data-use and model-training practices; IP and contract protections; service continuity and concentration risk; licensing and consumption-cost transparency.</p></div>
+        <div class="exp-card"><h4><i class="fa-solid fa-gavel"></i>Regulations &amp; Standards</h4><p>EU AI Act, ISO/IEC 42001, NIST AI RMF, GDPR, NIS2, DORA, Cyber Resilience Act, ISO 27001, SOC 2, NIST 800-53/171, HIPAA/HITRUST.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="tools">
+    <div class="card">
+      <h2 class="sec">AI Tools Fluency</h2><div class="sec-line"></div>
+      <p class="lead muted" style="margin-bottom:22px">Hands-on daily user of the AI tools being governed — which keeps policy grounded in reality.</p>
+
+      <div class="cert-group"><h4><i class="fa-solid fa-wand-magic-sparkles"></i>Generative AI Assistants</h4>
+      <div class="chips"><span class="chip">Microsoft 365 Copilot</span><span class="chip">ChatGPT Enterprise</span><span class="chip">Claude</span><span class="chip">Google Gemini</span><span class="chip">Custom GPTs &amp; Projects</span><span class="chip">Prompt Design</span></div></div>
+
+      <div class="cert-group"><h4><i class="fa-solid fa-robot"></i>Agent &amp; App Building</h4>
+      <div class="chips"><span class="chip">Copilot Studio</span><span class="chip">Azure AI Foundry</span><span class="chip">Azure OpenAI Service</span><span class="chip">Prompt Flow</span><span class="chip">Agent Permissions &amp; Grounding</span></div></div>
+
+      <div class="cert-group"><h4><i class="fa-solid fa-shield-halved"></i>Responsible AI Testing</h4>
+      <div class="chips"><span class="chip">Azure AI Content Safety</span><span class="chip">Responsible AI Toolbox</span><span class="chip">Fairlearn</span><span class="chip">InterpretML</span><span class="chip">Red Teaming</span></div></div>
+
+      <div class="cert-group"><h4><i class="fa-solid fa-magnifying-glass-chart"></i>AI Governance &amp; Discovery</h4>
+      <div class="chips"><span class="chip">OneTrust AI Governance</span><span class="chip">Microsoft Purview AI Hub (DSPM)</span><span class="chip">Defender for Cloud Apps</span><span class="chip">JFrog</span></div></div>
+
+      <div class="cert-group" style="margin-bottom:0"><h4><i class="fa-solid fa-bolt"></i>AI-Assisted Productivity</h4>
+      <div class="chips"><span class="chip">GRC Analytics &amp; Risk Dashboards</span><span class="chip">Meeting/Doc Summarization</span><span class="chip">AI-Assisted Policy &amp; Control Mapping</span></div></div>
+    </div>
+  </section>
+
+  <section class="panel" id="experience">
+    <div class="card">
+      <h2 class="sec">Professional Experience</h2><div class="sec-line"></div>
+
+      <div class="job">
+        <div class="job-top"><div><div class="job-title">Board of Directors, Membership Director</div><div class="job-co">ISACA Austin Chapter</div></div><div class="job-date">2026 – Present</div></div>
+        <ul><li>Elected board member shaping AI governance, cybersecurity compliance, and enterprise risk programming for <b>500+ CISOs, CIOs, and risk leaders</b> across Central Texas.</li></ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top"><div><div class="job-title">Co-Founder &amp; Managing Director, Enterprise AI Governance</div><div class="job-co">963ITAI Consulting (Microsoft AI Cloud Partner)</div></div><div class="job-date">Jan 2025 – Present</div></div>
+        <p class="job-desc">Embedded governance leadership for Fortune 500 clients in healthcare, financial services, and technology — owning framework design, operating mechanisms, and executive reporting from design through implementation.</p>
+        <ul>
+          <li><b>Governance framework:</b> Built end-to-end frameworks covering generative AI, ML, autonomous agents, and AI inside third-party products — Responsible AI principles, policy, controls, decision rights, approval thresholds, and named owners.</li>
+          <li><b>Risk-based tiering:</b> Created risk classification models by data sensitivity, business criticality, agent autonomy, people impact, regulatory exposure, and financial risk. Low-risk experiments clear in days; high-impact cases get deep review and human-in-the-loop controls.</li>
+          <li><b>AI inventory:</b> Maintain inventories of AI solutions, use cases, models, vendors, owners, and residual risk — one trusted leadership view that flags unmanaged, duplicate, and non-compliant deployments.</li>
+          <li><b>Investment governance:</b> Designed intake and stage-gate processes requiring a business case, measurable outcomes, full lifecycle cost, and a named benefit owner — with clear criteria to scale, pause, or stop.</li>
+          <li><b>Operating model:</b> Chair cross-functional AI governance forums across Technology, Security, Architecture, Privacy, Legal, Risk, Compliance, Procurement, and HR; brief C-suite and board committees on AI risk posture.</li>
+          <li><b>Architecture guardrails:</b> Defined approved AI patterns, sanctioned platforms/models, and controls across Azure AI Foundry, Copilot, and Copilot Studio.</li>
+          <li><b>Third-party AI risk:</b> Set vendor due-diligence standards covering data use, model training, security, IP, contracts, continuity, and regulatory risk — built into procurement workflows.</li>
+          <li><b>Regulatory translation:</b> Turn the EU AI Act, NIS2, DORA, and the Cyber Resilience Act into practical policy and readiness roadmaps.</li>
+          <li><b>Leadership:</b> Lead a distributed team of <b>15+</b> and oversee <b>$2M+</b> in annual program spend.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top"><div><div class="job-title">Senior Manager, Cybersecurity GRC &amp; Compliance</div><div class="job-co">Brinqa (Enterprise Risk &amp; Compliance Platform)</div></div><div class="job-date">Jan 2024 – Nov 2024</div></div>
+        <ul>
+          <li>Ran control and compliance programs against NIST 800-53, 800-171, HITRUST, and SOC 2 — raising control maturity scores <b>35%</b> through remediation, clear ownership, and continuous monitoring.</li>
+          <li>SME for GRC platform rollouts with automated control monitoring, risk visualization, executive dashboards, and AI-powered risk intelligence.</li>
+          <li>Led programs across Cybersecurity, Legal, IT, Audit, and Operations; represented the company in external audits with a clean record across multiple SOC 2 Type II engagements.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top"><div><div class="job-title">Manager, Cyber AI Risk &amp; Compliance / Cloud Security</div><div class="job-co">KPMG Global Consulting</div></div><div class="job-date">2022 – 2023</div></div>
+        <ul>
+          <li>Microsoft Cloud Partner SME delivering AI security, governance, and compliance on Azure Sentinel, Defender, and Purview for global clients.</li>
+          <li>Directed compliance programs for HIPAA, HITRUST, ISO 27001, PCI DSS, GDPR, and NYDFS for publicly traded companies.</li>
+          <li>Delivered NIST 800-171 readiness assessments for defense industrial base contractors; advised C-suite on risk posture and cyber insurance.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top"><div><div class="job-title">Earlier Experience</div><div class="job-co">Capgemini · Avanade / Dept. of Education · Oracle &amp; Microsoft</div></div><div class="job-date">2002 – 2022</div></div>
+        <ul>
+          <li><b>Technical Security Lead, Capgemini</b> (2021–2022): Secure integration and governance models; led executive cloud security workshops and briefed the Board Audit Committee.</li>
+          <li><b>Risk Manager, Avanade / Dept. of Education</b> (2009–2021): Governed IT risk through control assessments, IT audits, and SOC 1/SOC 2 Type II coordination — cut manual control effort <b>40%</b>.</li>
+          <li><b>IT Audit Manager &amp; Senior Consultant, Oracle &amp; Microsoft</b> (2002–2009): Managed onshore/offshore teams of 10+ across Asia-Pacific delivering SOC reporting and compliance assessments.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top"><div><div class="job-title">Board &amp; Industry Leadership</div></div><div class="job-date">2023 – 2024</div></div>
+        <ul>
+          <li><b>Board Member, Healthcare Non-Profit</b> (2023–2024): Advised on AI governance, technology adoption, and regulatory compliance.</li>
+          <li><b>Standards work:</b> Cloud Security Alliance AI Safety Initiative; Women in AI USA (contributor and volunteer).</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="panel" id="certs">
+    <div class="card">
+      <h2 class="sec">Certifications</h2><div class="sec-line"></div>
+
+      <div class="cert-group"><h4><i class="fa-solid fa-brain"></i>AI Governance</h4>
+      <div class="cert-list">
+        <span class="chip">ISO/IEC 42001 Lead Auditor (BSI)</span>
+        <span class="chip">AIGP — IAPP <span class="inprog">In Progress · Jan 2027</span></span>
+        <span class="chip">AI Governance &amp; Risk Management (CSA)</span>
+        <span class="chip">MIT AI Program (2026)</span>
+        <span class="chip">NIST AI RMF</span>
+      </div></div>
+
+      <div class="cert-group"><h4><i class="fa-solid fa-user-shield"></i>Security, Risk &amp; Audit</h4>
+      <div class="cert-list">
+        <span class="chip">ISO 27001 Lead Auditor (BSI)</span>
+        <span class="chip">CCAK (ISACA)</span>
+        <span class="chip">CompTIA Security+</span>
+        <span class="chip">Cloud Compliance &amp; Governance (ISACA)</span>
+      </div></div>
+
+      <div class="cert-group" style="margin-bottom:0"><h4><i class="fa-brands fa-microsoft"></i>Microsoft</h4>
+      <div class="cert-list">
+        <span class="chip">Cybersecurity Architect (SC-100)</span>
+        <span class="chip">Azure Security Engineer (AZ-500)</span>
+        <span class="chip">Security Operations Analyst (SC-200)</span>
+        <span class="chip">Identity &amp; Access Admin (SC-300)</span>
+        <span class="chip">Information Protection Admin (SC-401)</span>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <h2 class="sec">Platforms</h2><div class="sec-line"></div>
+      <div class="cert-group"><h4><i class="fa-solid fa-robot"></i>AI &amp; Responsible AI</h4>
+      <div class="cert-list"><span class="chip">Azure AI Foundry</span><span class="chip">Copilot Studio</span><span class="chip">Azure AI Services</span><span class="chip">Responsible AI Toolbox</span><span class="chip">Fairlearn</span><span class="chip">InterpretML</span><span class="chip">OneTrust</span><span class="chip">JFrog</span></div></div>
+      <div class="cert-group"><h4><i class="fa-solid fa-clipboard-check"></i>GRC</h4>
+      <div class="cert-list"><span class="chip">ServiceNow GRC</span><span class="chip">RSA Archer</span><span class="chip">Brinqa</span><span class="chip">Microsoft Purview</span><span class="chip">Compliance Manager</span></div></div>
+      <div class="cert-group" style="margin-bottom:0"><h4><i class="fa-solid fa-cloud"></i>Cloud &amp; Security</h4>
+      <div class="cert-list"><span class="chip">Microsoft Sentinel</span><span class="chip">Defender for Cloud</span><span class="chip">Azure Security Center</span><span class="chip">AWS</span><span class="chip">Google Cloud Platform</span></div></div>
+    </div>
+  </section>
+
+  <section class="panel" id="education">
+    <div class="card">
+      <h2 class="sec">Education</h2><div class="sec-line"></div>
+      <div class="job">
+        <div class="job-top"><div><div class="job-title">Bachelor of Cybersecurity</div><div class="job-co">Monash University</div></div></div>
+      </div>
+      <div class="job">
+        <div class="job-top"><div><div class="job-title">Bachelor of Business Administration — Accounting &amp; Finance</div><div class="job-co">Punjab University</div></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<footer>
+  © <span id="yr"></span> Malini Mistry · Enterprise AI Governance · Built as an interactive resume
+</footer>
+
+<script>
+  const tabs=document.querySelectorAll('.tab');
+  const panels=document.querySelectorAll('.panel');
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.t).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+  document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+
+
+</body></html>
